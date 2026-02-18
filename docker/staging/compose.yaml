@@ -1,0 +1,8 @@
+services:
+  next-architecture-staging:
+    build:
+      context: ../../
+      dockerfile: docker/staging/Dockerfile
+    image: next-architecture-staging
+    ports:
+      - "3002:3000"

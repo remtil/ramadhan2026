@@ -1,0 +1,8 @@
+services:
+  next-architecture-production:
+    build:
+      context: ../../
+      dockerfile: docker/production/Dockerfile
+    image: next-architecture-production
+    ports:
+      - "3003:3000"
