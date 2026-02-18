@@ -1,112 +1,129 @@
-### Next Architecture Project Overview
+# Next Architecture
 
 **Created with ❤️ by [Wahyu Agus Arifin](https://github.com/itpohgero)**
 
-This project leverages a modern stack to enhance development efficiency, code consistency, and performance. It is built using powerful libraries and tools for optimal experience in managing state, handling forms, and formatting code.
+---
+
+## Setup
+
+### 1. Clone & install
+
+```bash
+git clone <repository-url>
+cd ramadhan2026
+pnpm install
+```
+
+### 2. Environment
+
+Copy the sample env file for your environment:
+
+```bash
+# Development
+cp .env.development.sample .env.development
+
+# Or for staging/production
+cp .env.staging.sample .env.staging
+cp .env.production.sample .env.production
+```
+
+Edit the env file and fill in the real values:
+
+| Variable | Description |
+|----------|-------------|
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL (Dashboard → Project Settings → API) |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon/public key |
+| `DATABASE_URL` | Postgres connection string (Supabase: Project Settings → Database → Connection string → **URI**, use pooler mode) |
+
+For local development, you can use a single `.env.local` file in the project root (Next.js loads it automatically):
+
+```bash
+cp .env.development.sample .env.local
+# Then edit .env.local
+```
+
+### 3. Run the dev server
+
+```bash
+pnpm run dev
+```
+
+Open http://localhost:3000
 
 ---
 
-### Tech Stack & Tools Included
+## Database (Drizzle + Supabase)
 
-1. **Biome**  
-   A blazing-fast formatter for JavaScript, TypeScript, JSX, TSX, JSON, CSS, and GraphQL files. It provides 97% compatibility with Prettier, offering consistent formatting while saving CI and developer time.
+This project uses **Drizzle ORM** with **Supabase (Postgres)**. Schema and migrations live in `src/lib/db/`.
 
-2. **Redux Toolkit**  
-   A powerful library for state management that simplifies setup and helps manage complex state across the app. Redux Toolkit provides optimized patterns for managing state in a scalable and maintainable way.
+### Prerequisites
 
-3. **React Hook Form**  
-   Lightweight and performant library for form validation in React. It reduces re-renders and provides simple API for handling complex form use cases.
+- `DATABASE_URL` is set in your env (Supabase connection string, pooler).
+- A Supabase project is created.
 
-4. **Shadcn UI**  
-   A component library for building beautiful and accessible user interfaces in React. It provides a set of pre-built components that are easy to use and customize. 
-
-5. **Day.js**  
-   A small and fast library for handling dates and times in JavaScript. It offers an immutable API similar to Moment.js, with support for plugins and internationalization.
-
-6. **Jose**  
-   A JavaScript library for cryptographic operations, useful for JSON Web Tokens (JWT) and handling cryptography securely in the app.
-
-7. **Lodash**  
-   A utility library that provides helpful functions for common programming tasks, improving readability and efficiency.
-
-8. **Iconify**  
-   A comprehensive icon framework that offers thousands of icons in a single package, allowing for easy use and customization.
-
-9. **Axios**  
-   A popular library for making HTTP requests, providing promise-based methods for handling API requests and responses.
-
-10. **Next Themes**
-   A library for handling dark mode and light mode in Next.js applications, making it easy to toggle between themes.
-
-11. **Next.js Toploader**
-   A library for loading content in Next.js applications, providing a loading indicator while content is being fetched.
-
-12. **dotenv-cli**
-   A CLI tool for loading environment variables from .env files. (pnpm add -d dotenv-cli)
-
-13. **obfuscated**
-   The obfuscated command is used to obfuscate the static files in the Next.js app. It uses the JavaScript Obfuscator library to obfuscate the code and reduce the size of the files.
-14. **Husky**
-   A package manager for Git hooks, allowing you to configure and run scripts during various Git lifecycle events.
-
-15. **Commitlint**
-   A package for linting commit messages, ensuring that they follow a specific format and conventions.
-
-16. **Docker Multi-Stage Build and Environment**
-   A project that uses Docker for building and deploying multiple environments for development, staging, and production.
-
-17. **Makefile**
-   A project that uses Makefile for building and deploying multiple environments for development, staging, and production.
-
-18. **File Setup (Auto and Manual)**
-   A project that sets up SSH keys for deployment.
-
-19. **Tailwind CSS**
-   A CSS framework that provides a set of utility classes for building responsive and mobile-first websites.
-
----
-
-### Getting Started
-
-To run this project locally:
-
-1. Clone this repository: ```git clone <repository-url>```
-2. Make file in folder envs (.env.development, .env.production, .env.staging)
-2. Install dependencies with pnpm: ```pnpm install```
-3. Run the development server: ```pnpm run dev```
-
-
-## Using Docker and Makefile
-
-### Development environment - for doing testing
+### Structure
 
 ```
-make build-development
-make start-development
+src/lib/db/
+├── index.ts          # db instance (import { db } from "@/lib/db")
+├── schema/           # Table definitions (.ts)
+│   ├── index.ts      # Export all schemas
+│   └── example.ts    # Example table
+└── migrations/      # Generated output (SQL files, do not edit manually)
 ```
 
-Open http://localhost:3001
+### Adding or changing tables
 
-### Staging environment - for doing UAT testing
+1. **Create or edit a schema file** in `src/lib/db/schema/`, e.g. `src/lib/db/schema/users.ts`:
 
-```
-make build-staging
-make start-staging
-```
+```ts
+import { pgTable, serial, varchar, timestamp } from "drizzle-orm/pg-core";
 
-Open http://localhost:3002
-
-### Production environment - for users
-
-```
-make build-production
-make start-production
+export const users = pgTable("users", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  email: varchar("email", { length: 255 }).notNull().unique(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+});
 ```
 
-Open http://localhost:3003
+2. **Export it** in `src/lib/db/schema/index.ts`:
 
+```ts
+export * from "./example";
+export * from "./users";
+```
 
-Credit to [Wahyu Agus Arifin](https://github.com/itpohgero)
-- itpohgero@gmail.com
-- ig : @wahyuagusarifin
-- linkedin : [wahyuagusarifin](https://id.linkedin.com/in/wahyu-agus-arifin-8a6992215)
+3. **Generate a migration** (creates SQL files in `src/lib/db/migrations/`):
+
+```bash
+pnpm db:generate
+```
+
+Follow the prompt to name the migration (e.g. `add_users_table`).
+
+4. **Run the migration** against your database:
+
+```bash
+pnpm db:migrate
+```
+
+Your new or updated tables will then be in Supabase.
+
+### Database scripts
+
+| Command | Description |
+|---------|-------------|
+| `pnpm db:generate` | Generate migration files from schema (does not apply to DB) |
+| `pnpm db:migrate` | Run pending migrations |
+| `pnpm db:studio` | Open Drizzle Studio (GUI to inspect data and schema) |
+
+### Using the db in code (server only)
+
+```ts
+import { db } from "@/lib/db";
+import { users } from "@/lib/db/schema";
+
+// Example query
+const allUsers = await db.select().from(users);
+```
