@@ -1,0 +1,77 @@
+{
+	"id": "5b0cc36a-6f3f-46bf-ae61-6f7946f9c3c8",
+	"prevId": "00000000-0000-0000-0000-000000000000",
+	"version": "7",
+	"dialect": "postgresql",
+	"tables": {
+		"public.example": {
+			"name": "example",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"name": {
+					"name": "name",
+					"type": "varchar(255)",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"slug": {
+					"name": "slug",
+					"type": "varchar(255)",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"is_active": {
+					"name": "is_active",
+					"type": "boolean",
+					"primaryKey": false,
+					"notNull": true,
+					"default": true
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {
+				"example_slug_unique": {
+					"name": "example_slug_unique",
+					"nullsNotDistinct": false,
+					"columns": ["slug"]
+				}
+			},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		}
+	},
+	"enums": {},
+	"schemas": {},
+	"sequences": {},
+	"roles": {},
+	"policies": {},
+	"views": {},
+	"_meta": {
+		"columns": {},
+		"schemas": {},
+		"tables": {}
+	}
+}
