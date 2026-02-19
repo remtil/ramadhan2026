@@ -1,9 +1,5 @@
 import { z } from "zod";
 
-/**
- * Schema validasi untuk entity example (selaras dengan Drizzle schema).
- * Pakai di Server Actions / API untuk validasi input.
- */
 export const createExampleSchema = z.object({
 	name: z.string().min(1).max(255),
 	slug: z

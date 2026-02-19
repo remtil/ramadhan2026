@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-/** Contoh schema Zod untuk validasi input umum. */
 export const slugSchema = z
 	.string()
 	.min(1)
