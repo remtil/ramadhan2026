@@ -59,7 +59,6 @@ export function ActivityForm({ defaultValues, id, onSuccess }: Props) {
 
 	return (
 		<form onSubmit={handleSubmit} className="space-y-4">
-			{/* Title */}
 			<div className="space-y-2">
 				<label
 					htmlFor="title"
@@ -75,7 +74,6 @@ export function ActivityForm({ defaultValues, id, onSuccess }: Props) {
 				/>
 			</div>
 
-			{/* Description */}
 			<div className="space-y-2">
 				<label
 					htmlFor="description"
@@ -91,7 +89,6 @@ export function ActivityForm({ defaultValues, id, onSuccess }: Props) {
 				/>
 			</div>
 
-			{/* Points + Type row */}
 			<div className="grid grid-cols-2 gap-3">
 				<div className="space-y-2">
 					<label
@@ -135,7 +132,6 @@ export function ActivityForm({ defaultValues, id, onSuccess }: Props) {
 				</div>
 			</div>
 
-			{/* Active toggle */}
 			<div
 				className={`flex items-center justify-between rounded-xl border p-3.5 transition ${
 					form.isActive
@@ -167,7 +163,6 @@ export function ActivityForm({ defaultValues, id, onSuccess }: Props) {
 				</button>
 			</div>
 
-			{/* Submit */}
 			<button
 				type="submit"
 				disabled={isPending}
