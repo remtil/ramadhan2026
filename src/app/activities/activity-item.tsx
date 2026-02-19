@@ -53,7 +53,14 @@ export function ActivityItem({ activity }: { activity: Activity }) {
         </div>
         <ActivityForm
           id={activity.id}
-          defaultValues={activity}
+          defaultValues={{
+            title: activity.title,
+            description: activity.description ?? "", 
+            icon: activity.icon ?? "",
+            points: activity.points,
+            type: activity.type as "daily" | "optional", 
+            isActive: activity.isActive ?? true,
+          }}
           onSuccess={() => setEdit(false)}
         />
       </div>

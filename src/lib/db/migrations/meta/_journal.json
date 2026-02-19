@@ -15,6 +15,13 @@
       "when": 1771495781517,
       "tag": "0001_bitter_avengers",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1771516303960,
+      "tag": "0002_workable_sir_ram",
+      "breakpoints": true
     }
   ]
 }
