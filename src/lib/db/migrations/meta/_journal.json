@@ -15,6 +15,13 @@
 			"when": 1771495781517,
 			"tag": "0001_bitter_avengers",
 			"breakpoints": true
+		},
+		{
+			"idx": 2,
+			"version": "7",
+			"when": 1771512949065,
+			"tag": "0002_broad_ezekiel",
+			"breakpoints": true
 		}
 	]
 }
