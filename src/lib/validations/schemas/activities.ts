@@ -9,17 +9,17 @@ export const activityTypeEnum = z.enum(["daily", "optional"]);
  * Create Activity Schema
  */
 export const createActivitySchema = z.object({
-  title: z.string().min(1).max(255),
+	title: z.string().min(1).max(255),
 
-  description: z.string().optional(),
+	description: z.string().optional(),
 
-  points: z.number().int().min(0).default(0),
+	points: z.number().int().min(0).default(0),
 
-  icon: z.string().max(255).optional(),
+	icon: z.string().max(255).optional(),
 
-  type: activityTypeEnum.default("optional"),
+	type: activityTypeEnum.default("optional"),
 
-  isActive: z.boolean().optional().default(true),
+	isActive: z.boolean().optional().default(true),
 });
 
 /**
