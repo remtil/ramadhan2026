@@ -4,6 +4,7 @@ export const PATH = {
 	PRIVATE: "/dashboard",
 	DASHBOARD: "/dashboard",
 	ACTIVITIES: "/activities",
+	USER_ACTIVITIES: "/user-activities",
 	LOGIN: "/login",
 	SIGNUP: "/signup",
 };

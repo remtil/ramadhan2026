@@ -1,5 +1,5 @@
 {
-	"id": "3b96d366-328f-4c68-aee5-dc0459ba1276",
+	"id": "84b0f609-1017-4a4d-a5eb-34544993c215",
 	"prevId": "a3ab4b4d-1172-4ea0-b870-f00ca4c9c8df",
 	"version": "7",
 	"dialect": "postgresql",
@@ -183,6 +183,82 @@
 			"foreignKeys": {},
 			"compositePrimaryKeys": {},
 			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.user_activities": {
+			"name": "user_activities",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "uuid",
+					"primaryKey": true,
+					"notNull": true,
+					"default": "gen_random_uuid()"
+				},
+				"user_id": {
+					"name": "user_id",
+					"type": "uuid",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"activity_id": {
+					"name": "activity_id",
+					"type": "uuid",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "gen_random_uuid()"
+				},
+				"date": {
+					"name": "date",
+					"type": "date",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"points_earned": {
+					"name": "points_earned",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true,
+					"default": 0
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp with time zone",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {
+				"user_activities_user_id_activities_id_fk": {
+					"name": "user_activities_user_id_activities_id_fk",
+					"tableFrom": "user_activities",
+					"tableTo": "activities",
+					"columnsFrom": ["user_id"],
+					"columnsTo": ["id"],
+					"onDelete": "no action",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {
+				"unique_user_activity": {
+					"name": "unique_user_activity",
+					"nullsNotDistinct": false,
+					"columns": ["user_id", "activity_id", "date"]
+				}
+			},
 			"policies": {},
 			"checkConstraints": {},
 			"isRLSEnabled": false
