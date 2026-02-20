@@ -1,34 +1,34 @@
 {
-  "version": "7",
-  "dialect": "postgresql",
-  "entries": [
-    {
-      "idx": 0,
-      "version": "7",
-      "when": 1771405975285,
-      "tag": "0000_stormy_pride",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1771495781517,
-      "tag": "0001_bitter_avengers",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1771516303960,
-      "tag": "0002_workable_sir_ram",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1771539263885,
-      "tag": "0004_lethal_gateway",
-      "breakpoints": true
-    }
-  ]
+	"version": "7",
+	"dialect": "postgresql",
+	"entries": [
+		{
+			"idx": 0,
+			"version": "7",
+			"when": 1771405975285,
+			"tag": "0000_stormy_pride",
+			"breakpoints": true
+		},
+		{
+			"idx": 1,
+			"version": "7",
+			"when": 1771495781517,
+			"tag": "0001_bitter_avengers",
+			"breakpoints": true
+		},
+		{
+			"idx": 2,
+			"version": "7",
+			"when": 1771516303960,
+			"tag": "0002_workable_sir_ram",
+			"breakpoints": true
+		},
+		{
+			"idx": 4,
+			"version": "7",
+			"when": 1771539263885,
+			"tag": "0004_lethal_gateway",
+			"breakpoints": true
+		}
+	]
 }

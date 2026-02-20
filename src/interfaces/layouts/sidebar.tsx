@@ -54,7 +54,7 @@ const navItems = [
 			</svg>
 		),
 	},
-		{
+	{
 		href: PATH.USER_ACTIVITIES,
 		label: "User Activities",
 		icon: (
