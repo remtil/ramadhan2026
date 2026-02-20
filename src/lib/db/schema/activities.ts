@@ -9,9 +9,6 @@ import {
 	varchar,
 } from "drizzle-orm/pg-core";
 
-/**
- * Enum for activity type
- */
 export const activityTypeEnum = pgEnum("activity_type", ["daily", "optional"]);
 
 export const activities = pgTable("activities", {

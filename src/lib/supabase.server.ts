@@ -17,9 +17,7 @@ export async function createSupabaseClient() {
 						for (const { name, value, options } of cookiesToSet) {
 							cookieStore.set(name, value, options);
 						}
-					} catch {
-						// Di Server Component dengan middleware, set bisa di-ignore
-					}
+					} catch {}
 				},
 			},
 		},

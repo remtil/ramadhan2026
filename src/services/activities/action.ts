@@ -38,10 +38,13 @@ export async function deleteActivity(id: string) {
 }
 
 export async function getActivity() {
-	const activity = await db
-		.select()
-		.from(activities)
-		.orderBy(desc(activities.isActive));
-
-	return activity;
+	try {
+		const rows = await db
+			.select()
+			.from(activities)
+			.orderBy(desc(activities.isActive));
+		return rows;
+	} catch {
+		return [];
+	}
 }

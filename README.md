@@ -1,9 +1,5 @@
 # Next Architecture
 
-**Created with ❤️ by [Wahyu Agus Arifin](https://github.com/itpohgero)**
-
----
-
 ## Setup
 
 ### 1. Clone & install

@@ -6,7 +6,6 @@ export async function ActivityList() {
 
 	return (
 		<div className="space-y-3">
-			{/* Empty state */}
 			{data.length === 0 && (
 				<div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-neutral-200 bg-neutral-50 py-16 text-center">
 					<div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-neutral-100 text-3xl">
@@ -16,7 +15,6 @@ export async function ActivityList() {
 				</div>
 			)}
 
-			{/* List */}
 			{data.map((item) => (
 				<ActivityItem key={item.id} activity={item} />
 			))}

@@ -55,12 +55,9 @@ export function ActivityItem({ activity }: { activity: Activity }) {
 				<ActivityForm
 					id={activity.id}
 					defaultValues={{
-						title: activity.title,
-						description: activity.description ?? "",
-						icon: activity.icon ?? "",
-						points: activity.points,
-						type: activity.type as "daily" | "optional",
-						isActive: activity.isActive ?? true,
+						...activity,
+						description: activity.description ?? undefined,
+						icon: activity.icon ?? undefined,
 					}}
 					onSuccess={() => setEdit(false)}
 				/>
@@ -70,7 +67,6 @@ export function ActivityItem({ activity }: { activity: Activity }) {
 
 	return (
 		<div className="group relative flex flex-col rounded-2xl border border-neutral-200 bg-white p-4 transition-all hover:-translate-y-0.5">
-			{/* Top row */}
 			<div className="flex items-start justify-between gap-2">
 				<div className="flex-1 min-w-0">
 					<h3 className="font-semibold text-neutral-900 leading-tight">
@@ -89,12 +85,9 @@ export function ActivityItem({ activity }: { activity: Activity }) {
 				</span>
 			</div>
 
-			{/* Divider */}
 			<div className="my-3 border-t border-neutral-100" />
 
-			{/* Footer row */}
 			<div className="flex items-center justify-between">
-				{/* Points + Status */}
 				<div className="flex items-center gap-2.5">
 					<span className="flex items-center gap-1 text-xs font-semibold text-amber-500">
 						<span>⭐</span>
@@ -115,7 +108,6 @@ export function ActivityItem({ activity }: { activity: Activity }) {
 					</span>
 				</div>
 
-				{/* Action buttons - always visible on mobile, hover on desktop */}
 				<div className="flex items-center gap-1.5 opacity-0 transition-opacity group-hover:opacity-100">
 					<button
 						type="button"

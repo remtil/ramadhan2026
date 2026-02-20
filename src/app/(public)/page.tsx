@@ -1,14 +1,11 @@
-import React from "react";
+import { createSupabaseClient } from "@/lib/supabase.server";
+import { PATH } from "@/shared/path";
+import { redirect } from "next/navigation";
 
-const Page = () => {
-	return (
-		<div className="min-h-screen flex flex-col items-center justify-center p-4">
-			<h1 className="text-2xl font-semibold mb-2">Selamat datang</h1>
-			<p className="text-muted-foreground text-center max-w-md">
-				Ini halaman utama.
-			</p>
-		</div>
-	);
-};
-
-export default Page;
+export default async function RootPage() {
+	const supabase = await createSupabaseClient();
+	const {
+		data: { user },
+	} = await supabase.auth.getUser();
+	redirect(user ? PATH.PRIVATE : PATH.LOGIN);
+}
