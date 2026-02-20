@@ -86,7 +86,7 @@ export default async function DashboardPage() {
 						</div>
 						<div className="text-right">
 							<p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-								Today's Progress
+								Today&apos;s Progress
 							</p>
 							<p className="text-xl font-bold text-emerald-400">
 								{completedToday.length}/{allActivities.length}{" "}
@@ -126,7 +126,7 @@ export default async function DashboardPage() {
 					<div className="bg-[#12161f] border border-emerald-500/30 rounded-xl p-5 shadow-[0_0_15px_rgba(16,185,129,0.05)]">
 						<div className="flex justify-between items-start mb-4">
 							<p className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-								Today's Points
+								Today&apos;s Points
 							</p>
 							<span>🎯</span>
 						</div>
@@ -168,7 +168,7 @@ export default async function DashboardPage() {
 				{/* --- ACTIVITIES GRID --- */}
 				<div>
 					<div className="flex justify-between items-center mb-4">
-						<h2 className="text-lg font-bold text-white">Today's Activities</h2>
+						<h2 className="text-lg font-bold text-white">Today&apos;s Activities</h2>
 						<span className="text-xs font-medium bg-[#1a202c] text-slate-400 px-3 py-1 rounded-md">
 							{serverToday}
 						</span>
